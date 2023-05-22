@@ -1,13 +1,13 @@
 <!-- @format -->
 
-1. Clone the repo
+### Usage
 
 ```sh
     cd shell
    yarn build
 ```
 
-2. From the root:
+From the root:
 
 ```sh
 npm install -g ../
@@ -23,6 +23,6 @@ yarn dev // dev server
 yarn publish-dev // publish on the server
 ```
 
-3. Go to http://localhost:9000/ldod-mfes/<some-name>
+Go to http://localhost:9000/ldod-mfes/<some-name>
 
 Note: Is not tottaly decoupled from the LdoD project but soon it will...
