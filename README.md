@@ -3,8 +3,8 @@
 ### Usage
 
 ```sh
-    cd shell
-   yarn build
+cd shell
+yarn build
 ```
 
 From the root:
