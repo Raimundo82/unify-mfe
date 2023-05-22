@@ -19,9 +19,9 @@ npx create-unify-mfe -name <some-name>
 
 ```sh
 cd <some-name>
-npm install
-npm run dev // dev server
-npm run publish-dev // publish on the server
+yarn
+yarn dev // dev server
+yarn publish-dev // publish on the server
 ```
 
 Go to http://localhost:9000/ldod-mfes/`some-name`
