@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fc1b27" />
+    <style type="text/css">
+        :root {
+            --ldod-primary: #fc1b27;
+            --ldod-primary-hover: #fd8188;
+            --ldod-secondary: #ffffff;
+        }
+
+        .ldod-default {
+            font-family: Work-Sans, sans-serif;
+            color: black;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 190px;
+            overflow: inherit;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        div#notification-container {
+            padding: 0 2rem;
+            transform: translateX(-50%);
+            left: 50%;
+            top: 135px;
+            position: fixed;
+            z-index: 1090;
+            width: max-content;
+            max-width: 100%;
+        }
+
+        div#notification-container>* {
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        @media (width < 767.98px) {
+            body {
+                padding-top: 100px;
+            }
+        }
+
+        @media (width >=768px) {
+            .container {
+                width: 720px;
+            }
+        }
+
+        @media (width >=992px) {
+            .container {
+                width: 940px;
+            }
+        }
+
+        @media (width >=1200px) {
+            .container {
+                width: 1140px;
+            }
+
+            body {
+                padding-top: 150px;
+            }
+        }
+    </style>
+    <script id="importmap" type="importmap">
+        { "imports": { "shared/":"/node_modules/shared/dist/" } }
+    </script>
+    <title>LdoD Shell MFE</title>
+    <link rel="manifest" href="/ldod-mfes/shell/manifest.json">
+    <link rel="icon" href="/ldod-mfes/shell/favicon.ico">
+</head>
+
+<body class="ldod-default">
+    <nav-bar></nav-bar>
+    <div class="container">
+        <ldod-router id="shell" base="/ldod-mfes"><ldod-outlet></ldod-outlet></ldod-router>
+    </div>
+    <div id="notification-container"></div>
+    <loading-spinner id="shell-loading" hidden></loading-spinner>
+    <script type="module" src="/ldod-mfes/shell/shell.js" async></script>
+    <scroll-btn></scroll-btn>
+
+</body>
+
+</html>

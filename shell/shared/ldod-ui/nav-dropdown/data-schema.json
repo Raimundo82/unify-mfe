@@ -1,0 +1,44 @@
+{
+	"type": "object",
+	"required": ["name", "data"],
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"data": {
+			"type": "object",
+			"required": ["name", "links"],
+			"properties": {
+				"name": { "type": "string" },
+				"links": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"key": {
+								"type": "string"
+							},
+							"route": {
+								"type": "string"
+							},
+							"link": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			}
+		},
+		"replace": { "type": "boolean" },
+		"hidden": { "type": "boolean" },
+		"constants": {
+			"type": "object",
+			"required": ["pt", "en", "es"],
+			"properties": {
+				"pt": { "type": "object" },
+				"en": { "type": "object" },
+				"es": { "type": "object" }
+			}
+		}
+	}
+}

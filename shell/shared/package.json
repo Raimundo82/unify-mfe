@@ -1,0 +1,62 @@
+{
+	"name": "shared",
+	"version": "1.0.0",
+	"description": "shared packages to be used by ldod mfes",
+	"main": "dist/",
+	"author": "Raimundo",
+	"license": "MIT",
+	"private": true,
+	"workspaces": {
+		"packages": [
+			"*"
+		],
+		"nohoist": [
+			"**/vite",
+			"**/rollup",
+			"**/@rollup/plugin-terser",
+			"**/vite-svg-loader",
+			"**/@babel/*",
+			"**/@types/jest",
+			"**/babel-jest",
+			"**/jest",
+			"**/jest-environment-jsdom",
+			"**/node-html-parser",
+			"**/jsdom",
+			"**/sass",
+			"**/serve",
+			"**/@happy-dom/jest-environment",
+			"**/happy-dom",
+			"**/rollup-plugin-terser",
+			"**/@esm-bundle/chai",
+			"**/@web/test-runner",
+			"**/@web/test-runner-puppeteer"
+		]
+	},
+	"scripts": {
+		"test": "./scripts/test.sh",
+		"build": "./scripts/build.sh"
+	},
+	"type": "module",
+	"devDependencies": {
+		"@babel/core": "^7.20.7",
+		"@babel/preset-env": "^7.20.2",
+		"@esm-bundle/chai": "^4.3.4-fix.0",
+		"@happy-dom/jest-environment": "^6.0.4",
+		"@rollup/plugin-terser": "latest",
+		"@types/jest": "^29.2.5",
+		"@web/test-runner": "^0.16.1",
+		"@web/test-runner-puppeteer": "^0.13.1",
+		"babel-jest": "^29.3.1",
+		"happy-dom": "^7.7.0",
+		"jest": "^29.3.1",
+		"jest-environment-jsdom": "^29.3.1",
+		"jsdom": "^20.0.3",
+		"lit": "^2.7.4",
+		"node-html-parser": "latest",
+		"rollup": "latest",
+		"sass": "latest",
+		"serve": "^14.1.2",
+		"vite": "latest",
+		"vite-svg-loader": "latest"
+	}
+}

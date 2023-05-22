@@ -1,0 +1,22 @@
+{
+	"name": "ldod-events",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"workspaces": {
+		"nohoist": [
+			"vite",
+			"@rollup/plugin-terser",
+			"vite-svg-loader"
+		]
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"event-bus": "1.0.0"
+	}
+}

@@ -1,0 +1,2 @@
+let t;async function a(){return t||(t=await import("./home-1ee6d37c.js")),t}typeof window<"u"&&typeof document<"u"&&typeof navigator<"u"&&(import("./nav-bar-70dcc18e.js"),import("./home-info-e9be12e8.js").then((t=>t.h)));const n={path:"/",mount:async(t,n)=>(await a()).mount(t,n),unMount:async()=>(await a()).unMount(),preRender:async(t,a)=>await(await import("./nav-bar-ssr-d755eb40.js")).default(t,a)};export{n as default};
+//# sourceMappingURL=home.js.map

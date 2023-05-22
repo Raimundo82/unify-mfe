@@ -1,0 +1,23 @@
+{
+	"name": "ldod-core",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"workspaces": {
+		"nohoist": [
+			"vite",
+			"@rollup/plugin-terser",
+			"@esm-bundle/chai",
+			"@web/test-runner",
+			"@web/test-runner-puppeteer"
+		]
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"test": "wtr \"test/**/*.test.js\" --node-resolve --puppeteer",
+		"test:watch": "wtr \"test/**/*.test.js\" --node-resolve --puppeteer --watch"
+	}
+}
