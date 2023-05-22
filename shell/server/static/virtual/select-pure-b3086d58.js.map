@@ -1,1 +1,0 @@
-{"version":3,"file":"select-pure-b3086d58.js","sources":["../src/select-pure.js"],"sourcesContent":["import.meta.env.DEV ? import('select-pure_2.1.4/dist/index.js') : import('@vendor/select-pure_2.1.4/dist/index.js');\n"],"names":["import"],"mappings":"AAAkEA,OAAO"}

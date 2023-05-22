@@ -1,2 +1,0 @@
-import"./ldod-conduct-d4cfdbd9.js";import"./dynamic-import-helper-5f2de6aa.js";import"./home-info-df7ce84b.js";import"./utils-40606ff5.js";import"@core";let t;const e=(e,o)=>{document.querySelector(o).appendChild(function(e){if(!t){const e=document.createElement("template");e.innerHTML="<ldod-conduct  title></ldod-conduct>",t=e.content.firstElementChild}const o=t.cloneNode(!0);return o.setAttribute("language",e),o}(e))},o=()=>document.querySelector("ldod-conduct")?.remove(),n="/conduct";export{e as mount,n as path,o as unMount};
-//# sourceMappingURL=conduct-e7f45246.js.map

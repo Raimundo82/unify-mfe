@@ -1,1 +1,0 @@
-{"version":3,"file":"select-pure-18afb1ed.js","sources":["../src/select-pure.js"],"sourcesContent":["export const selectPure = import.meta.env.DEV\n\t? import('select-pure_2.1.4/dist/index.js')\n\t: import('@vendor/select-pure_2.1.4/dist/index.js');\n"],"names":["selectPure","import"],"mappings":"AAAY,MAACA,EAEVC,OAAO"}

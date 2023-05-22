@@ -1,2 +1,0 @@
-let a,t;const n={path:"/search",mount:async(a,t)=>(await e()).mount(a,t),unMount:async()=>(await e()).unMount(),preRender:async(a,t)=>(await import("./headerSSR-4805a9ea.js")).default(a,t)};async function e(){return a||(a=await import("./search-router-57eb1e23.js")),a}async function r(){t||(t=import("./ldod-search-simple-a5e13c63.js"))}export{n as default,r as loadSearchSimple};
-//# sourceMappingURL=search.js.map

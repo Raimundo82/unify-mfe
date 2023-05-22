@@ -1,2 +1,0 @@
-const a={index:()=>"/reading",editionInterPath:(a,n)=>`/reading/fragment/${a}/inter/${n}`};let n;const e=async()=>(n||(n=await import("./reading-router-7a925504.js").then((a=>a.a))),n),t={path:"/reading",references:a,preRender:async(a,n)=>(await import("./headerSSR-0ddc9ab1.js")).default(a,n),mount:async(a,n)=>(await e()).mount(a,n),unMount:async()=>(await e()).unMount()};export{t as a,a as r};
-//# sourceMappingURL=reading-f37a19ee.js.map

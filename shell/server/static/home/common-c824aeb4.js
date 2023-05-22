@@ -1,2 +1,0 @@
-const i="img{vertical-align:middle;border:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}.skeleton{display:inline-block;width:100%;height:200px;background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}@keyframes loading{0%{background-position:200% 0}to{background-position:-200% 0}}\n";export{i as c};
-//# sourceMappingURL=common-c824aeb4.js.map
