@@ -23,6 +23,6 @@ yarn dev // dev server
 yarn publish-dev // publish on the server
 ```
 
-Go to http://localhost:9000/ldod-mfes/`<some-name>`
+Go to http://localhost:9000/ldod-mfes/`some-name`
 
-Note: Is not tottaly decoupled from the LdoD project but soon it will...
+Note: Is not totally decoupled from the LdoD project but soon it will...
