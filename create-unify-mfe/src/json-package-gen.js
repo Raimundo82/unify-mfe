@@ -7,7 +7,6 @@ import { writeFileSync } from 'node:fs';
 export default name => {
 	try {
 		writeFileSync(`${name}/package.json`, JSON.stringify(getPackageJSON(name)));
-		console.log('installing dependencies');
 	} catch (error) {
 		console.error(error.toString());
 		undo(name);

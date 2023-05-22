@@ -12,7 +12,6 @@ export default name => {
 	fs.mkdirSync(scriptsPath);
 
 	fs.readdirSync(scriptsDir).forEach(script => {
-		console.log(`generating ${script}`);
 		execSync(`chmod +x ${scriptsDir}/${script}`);
 		fs.copyFileSync(`${scriptsDir}/${script}`, resolve(scriptsPath, script));
 	});

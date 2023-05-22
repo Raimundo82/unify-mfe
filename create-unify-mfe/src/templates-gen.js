@@ -18,7 +18,6 @@ export function extractDirectory(name, dir, dest = resolve(name)) {
 }
 
 function handleFile(name, srcPath, destinationPath) {
-	console.log(destinationPath);
 	if (srcPath.endsWith('.env')) return generateEnvVariables(name, srcPath, destinationPath);
 	destinationPath = destinationPath.endsWith('src/entry-point.js')
 		? destinationPath.replace('entry-point', name)
