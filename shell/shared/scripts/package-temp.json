@@ -1,0 +1,7 @@
+{
+	"name": "unify-core",
+	"version": "1.0.0",
+	"description": "core package for unify MFEs",
+	"main": "esm",
+	"license": "MIT"
+}

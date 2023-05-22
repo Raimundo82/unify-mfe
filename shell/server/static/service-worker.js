@@ -1,6 +1,6 @@
 /** @format */
 
-let CACHE_VERSION = '67ee4556-e42c-4946-accc-6ec83d294b26';
+let CACHE_VERSION = 'cc63d82c-31dd-41ad-99af-01b32629a8a8';
 
 self.addEventListener('install', e => {
 	self.skipWaiting();
