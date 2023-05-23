@@ -1,13 +1,5 @@
 /** @format */
 
-import { ldodEventSubscriber, ldodEventPublisher } from '@core';
-import { getLanguage, store } from './shell-store.js';
-let notification;
-
-const loadNotification = async () => {
-	notification = (await import('./components/notification.js')).default;
-};
-
 const notificationContainer = document.getElementById('notification-container');
 
 async function notifications(content, theme) {

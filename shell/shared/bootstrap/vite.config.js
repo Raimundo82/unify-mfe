@@ -14,6 +14,7 @@ export default defineConfig({
 		lib: {
 			entry: [
 				'src/scss/root.scss',
+				'src/scss/bootstrap.scss',
 				'src/buttons-css.js',
 				'src/root-css.js',
 				'src/forms-css.js',

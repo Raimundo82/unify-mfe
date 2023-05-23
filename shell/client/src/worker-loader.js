@@ -4,57 +4,14 @@ const worker = new Worker('/ldod-mfes/shell/worker.js', { type: 'module' });
 
 const FONTS_URL = '/ldod-mfes/shell/style/fonts';
 const ROOT_CSS_URL = '/ldod-mfes/shared/ui/bootstrap/root.css';
-const fonts = [
-	{
-		family: 'Work-Sans',
-		src: `${FONTS_URL}/WorkSans-VariableFont_wght.ttf`,
-		style: 'normal',
-		weight: '200 800',
-		display: 'optional',
-	},
+const BOOTSTRAP_CSS_URL = '/ldod-mfes/shared/ui/bootstrap/bootstrap.css';
 
-	{
-		family: 'Space-Mono',
-		src: `${FONTS_URL}/space-mono/SpaceMono-Bold.ttf`,
-		style: 'normal',
-		weight: 700,
-		display: 'swap',
-	},
-	{
-		family: 'Ultra',
-		src: `${FONTS_URL}/ultra/Ultra-Regular.ttf`,
-		style: 'normal',
-		weight: 400,
-		display: 'swap',
-	},
-	{
-		family: 'League-Gothic',
-		src: `${FONTS_URL}/league-gothic/LeagueGothic-Regular.otf`,
-		style: 'normal',
-		weight: 400,
-		display: 'swap',
-	},
-	{
-		family: 'League-Gothic-Condensed',
-		src: `${FONTS_URL}/league-gothic/LeagueGothic-CondensedRegular.otf`,
-		style: 'normal',
-		weight: 400,
-		display: 'swap',
-	},
-
-	{
-		family: 'Space-Mono',
-		src: `${FONTS_URL}/space-mono/SpaceMono-Regular.ttf`,
-		style: 'normal',
-		weight: 400,
-		display: 'swap',
-	},
-];
+const fonts = [];
 
 fonts.forEach(font => {
 	worker.postMessage({ type: 'font', url: font.src });
 });
-worker.postMessage({ type: 'css', url: ROOT_CSS_URL });
+worker.postMessage({ type: 'css', url: BOOTSTRAP_CSS_URL });
 
 //worker.postMessage({ type: 'script', url: '/ldod-mfes/shared/notifications.js' });
 //worker.postMessage({ type: 'script', url: '/ldod-mfes/shared/ldod-icons.js' });

@@ -1,6 +1,5 @@
 /** @format */
 
-import { ldodEventPublisher } from '../../ldod-event-bus/src/helpers';
 import { BASE_PATH } from './ldod-router';
 export default class NavTo extends HTMLAnchorElement {
 	get to() {
@@ -63,7 +62,7 @@ export default class NavTo extends HTMLAnchorElement {
 
 	emitURLEvent() {
 		if (!this.to) return;
-		ldodEventPublisher('url-changed', { path: this.to });
+		navigateTo(this.to);
 	}
 
 	isMfePublished = () => this.publishedMfes.includes(this.mfePath);
@@ -73,6 +72,7 @@ export default class NavTo extends HTMLAnchorElement {
 	removeToAttr = () => this.removeAttribute('to');
 }
 customElements.define('nav-to', NavTo, { extends: 'a' });
+
 export const navigateTo = (path, state) => {
-	ldodEventPublisher('url-changed', { path, state });
+	unifyEventBus.publishr('unify:url', { path, state });
 };

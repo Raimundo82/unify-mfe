@@ -1,11 +1,9 @@
 /** @format */
 
 import notFound from './components/not-found';
-import { getLanguage } from './shell-store';
 
 const modules = JSON.parse(document.querySelector('script#importmap').textContent).imports;
 const router = document.body.querySelector('ldod-router');
-router.setAttribute('language', getLanguage());
 router.fallback = notFound;
 
 const routes = await Object.keys(modules)

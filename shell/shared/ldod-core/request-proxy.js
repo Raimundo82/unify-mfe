@@ -1,6 +1,5 @@
 /** @format */
 
-import { ldodEventBus } from '../ldod-event-bus';
 import { getPartialStorage } from '../ldod-store';
 
 export const mergeHeaders = request => {
@@ -19,9 +18,8 @@ export const fetchProxy = new Proxy(fetch, {
 	apply: fetchInterceptor,
 });
 
-const handleLoading = isLoading => ldodEventBus.publish('ldod:loading', isLoading);
-const handleError = message =>
-	ldodEventBus.publish('ldod:error', message || 'Something went wrong');
+const handleLoading = isLoading => eventBus.publish('ldod:loading', isLoading);
+const handleError = message => eventBus.publish('ldod:error', message || 'Something went wrong');
 
 function fetchInterceptor(target, thisArg, args) {
 	handleLoading(true);

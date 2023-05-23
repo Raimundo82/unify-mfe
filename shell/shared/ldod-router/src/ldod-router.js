@@ -1,6 +1,5 @@
 /** @format */
 
-import { ldodEventPublisher, ldodEventSubscriber } from '../../ldod-event-bus/src/helpers';
 import { addEndSlash, addStartSlash, isSlash, PATH_PATTERN, removeEndSlash } from './utils';
 
 export let BASE_PATH;
@@ -113,7 +112,7 @@ export default class LdodRouter extends HTMLElement {
 	}
 
 	addEventListeners() {
-		this.unsubURL = ldodEventSubscriber('url-changed', this.handleURLChanged);
+		this.unsubURL = eventBus.subscribe('unify:url', this.handleURLChanged);
 		window.addEventListener('popstate', this.handlePopstate);
 	}
 
@@ -131,9 +130,9 @@ export default class LdodRouter extends HTMLElement {
 
 	async render() {
 		let route = await this.getRoute();
-		ldodEventPublisher('loading', true);
+		handleLoading(true);
 		await this.appendMFE(route).catch(console.error);
-		ldodEventPublisher('loading', false);
+		handleLoading(false);
 	}
 
 	isARouteMatch = path => {
@@ -200,3 +199,7 @@ export default class LdodRouter extends HTMLElement {
 }
 
 !customElements.get('ldod-router') && customElements.define('ldod-router', LdodRouter);
+
+function handleLoading(bool) {
+	eventBus.publish('unify:loading', bool);
+}

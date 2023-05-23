@@ -1,3 +1,0 @@
-{
-    "redirects": [{ "source": "/ldod-mfes/:path*", "destination": "/:path*" }]
-}
