@@ -1,6 +1,5 @@
 /** @format */
 
-const ldodEventBus = globalThis.eventBus;
 export class LoadingSpinner extends HTMLElement {
 	constructor() {
 		super();
@@ -34,8 +33,8 @@ export class LoadingSpinner extends HTMLElement {
 	}
 
 	addEventListeners = () => {
-		this.unsubLoading = ldodEventBus?.subscribe(
-			'ldod:loading',
+		this.unsubLoading = eventBus?.subscribe(
+			'unify:loading',
 			this.handleLoadingEvent
 		).unsubscribe;
 	};

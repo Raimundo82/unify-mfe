@@ -1,25 +1,19 @@
 /** @format */
 
 import { addEndSlash, addStartSlash, isSlash, PATH_PATTERN, removeEndSlash } from './utils';
-
+import { sleep } from '../../ldod-core/helpers';
 export let BASE_PATH;
+
 export default class LdodRouter extends HTMLElement {
 	constructor() {
 		super();
+		if (!this.id) throw new Error('Each router must have an unique ID');
 		this.routes = {};
-		this.shadow && this.attachShadow({ mode: 'open' });
+		this.wrapper = this.querySelector('unify-wrapper');
 	}
 
 	static get observedAttributes() {
-		return ['language', 'base'];
-	}
-
-	get shadow() {
-		return this.hasAttribute('shadow');
-	}
-
-	get self() {
-		return this.shadow ? this.shadowRoot : this;
+		return ['base'];
 	}
 
 	get location() {
@@ -38,19 +32,18 @@ export default class LdodRouter extends HTMLElement {
 		return removeEndSlash(`/${this.base}${this.route}`)?.replace(/\/\/+/g, '/');
 	}
 
-	get outlet() {
-		let outlet = this.self.querySelector('ldod-outlet');
-		if (!outlet) outlet = document.createElement('ldod-outlet');
-		outlet.id = `${this.id}-outlet`;
-		return outlet;
-	}
-
 	get language() {
 		return this.getAttribute('language');
 	}
 
 	set language(language) {
 		this.setAttribute('language', language);
+	}
+
+	getWrapper() {
+		if (!this.wrapper)
+			this.innerHTML = /*html */ `<unify-wrapper id="wrapper__${this.id}"></unify-wrapper>`;
+		return this.wrapper.shadowRoot;
 	}
 
 	getFullPath = path => removeEndSlash(`/${this.base}/${path ?? ''}`.replace(/\/\/+/g, '/'));
@@ -75,8 +68,6 @@ export default class LdodRouter extends HTMLElement {
 
 	async connectedCallback() {
 		this.addEventListeners();
-		if (!this.id) throw new Error('Each router must have an unique ID');
-		this.self.append(this.outlet);
 		this.processRoutes();
 	}
 
@@ -94,16 +85,13 @@ export default class LdodRouter extends HTMLElement {
 	}
 
 	onAttributeChange = {
-		language: (oldV, newV) => oldV && oldV !== newV && this.handleLanguageChange(newV),
 		base: (_, basePath) => {
 			if (!BASE_PATH && basePath) BASE_PATH = basePath;
 		},
 	};
 
 	handleLanguageChange(language) {
-		this.self
-			.querySelectorAll('[language]')
-			.forEach(ele => ele.setAttribute('language', language));
+		this.querySelectorAll('[language]').forEach(ele => ele.setAttribute('language', language));
 	}
 
 	disconnectedCallback() {
@@ -126,13 +114,20 @@ export default class LdodRouter extends HTMLElement {
 		if (path && this.isFromThisRouter(path)) this.navigate(this.getFullPath(path), state);
 	};
 
-	handlePopstate = () => this.isFromThisRouter(this.location) && this.navigate(this.location);
+	handlePopstate = () => {
+		this.isFromThisRouter(this.location) && this.navigate(this.location);
+	};
 
 	async render() {
 		let route = await this.getRoute();
-		handleLoading(true);
-		await this.appendMFE(route).catch(console.error);
-		handleLoading(false);
+		this.handleLoading(true);
+		try {
+			await this.appendMFE(route);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			this.handleLoading(false);
+		}
 	}
 
 	isARouteMatch = path => {
@@ -189,17 +184,18 @@ export default class LdodRouter extends HTMLElement {
 		if (!route) return;
 		this.active && (await this.removeMFE());
 		this.active = await route();
-		await this.active.mount(this.language, `#${this.outlet.id}`);
+		const element = await this.active.mount();
+		this.getWrapper().appendChild(element);
 	}
 
 	async removeMFE() {
 		await this.active?.unMount();
-		this.outlet.innerHTML = '';
+		this.wrapper.innerHTML = '';
+	}
+
+	handleLoading(bool) {
+		eventBus.publish('unify:loading', bool);
 	}
 }
 
 !customElements.get('ldod-router') && customElements.define('ldod-router', LdodRouter);
-
-function handleLoading(bool) {
-	eventBus.publish('unify:loading', bool);
-}

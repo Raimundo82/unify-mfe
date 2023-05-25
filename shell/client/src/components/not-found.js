@@ -1,22 +1,19 @@
 /** @format */
 
 const message = {
-	en: 'LdoD: Page not found...',
+	en: 'Page not found...',
 };
 
-const getNoPage = () => document.body.querySelector('div#no-page.container');
+const noPage = document.createElement('div');
+noPage.id = 'no-page';
+noPage.className = 'container';
+noPage.textContent = message.en;
 
-const NoPage = () => /*html*/ `<div id="no-page" class="container">${message.en}</div>`;
-
-let langUnsub;
-
-const mount = (language, ref) => {
-	const container = document.body.querySelector(ref);
-	container.innerHTML = NoPage(language);
+const mount = () => {
+	return noPage;
 };
 const unMount = () => {
-	langUnsub();
-	getNoPage().remove();
+	noPage?.remove();
 };
 
 export default () => ({

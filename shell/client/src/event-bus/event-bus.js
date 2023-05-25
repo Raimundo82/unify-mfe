@@ -20,8 +20,8 @@ const handlers = {
 	message: ({ payload }) => notifications(payload || '', 'success'),
 };
 
-eventBus.subscribe('message', handlers.message);
-eventBus.subscribe('error', handlers.error);
+eventBus.subscribe('unify:message', handlers.message);
+eventBus.subscribe('unify:error', handlers.error);
 
 async function loadNotification() {
 	if (!notification) notification = (await import('../components/notification.js')).default;

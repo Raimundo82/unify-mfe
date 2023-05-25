@@ -5,3 +5,4 @@ export * from '../ldod-store';
 export * from './request-proxy';
 export * from './helpers';
 export * from '../ldod-jsx';
+import './unify-wrapper';

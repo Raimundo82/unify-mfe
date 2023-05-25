@@ -35,7 +35,11 @@
 
 <body>
     <div class="container">
-        <ldod-router id="shell" base="/ldod-mfes"><ldod-outlet></ldod-outlet></ldod-router>
+        <ldod-router id="shell" base="/ldod-mfes">
+            <unify-wrapper>
+                <template shadowrootmode="open"></template>
+            </unify-wrapper>
+        </ldod-router>
     </div>
     <div id="notification-container"></div>
     <loading-spinner id="shell-loading" hidden></loading-spinner>
