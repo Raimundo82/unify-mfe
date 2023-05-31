@@ -29,13 +29,13 @@
     <script id="importmap" type="importmap">
     </script>
     <title>Unify MFE</title>
-    <link rel="manifest" href="/ldod-mfes/shell/manifest.json">
-    <link rel="icon" href="/ldod-mfes/shell/favicon.ico">
+    <link rel="manifest" href="/shell/manifest.json">
+    <link rel="icon" href="/shell/favicon.ico">
 </head>
 
 <body>
     <div class="container">
-        <ldod-router id="shell" base="/ldod-mfes">
+        <ldod-router id="shell" base="">
             <unify-wrapper>
                 <template shadowrootmode="open"></template>
             </unify-wrapper>
@@ -43,7 +43,7 @@
     </div>
     <div id="notification-container"></div>
     <loading-spinner id="shell-loading" hidden></loading-spinner>
-    <script type="module" src="/ldod-mfes/shell/shell.js" async></script>
+    <script type="module" src="/shell/shell.js" async></script>
     <scroll-btn></scroll-btn>
 
 </body>

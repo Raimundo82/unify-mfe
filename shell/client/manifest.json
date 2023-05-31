@@ -3,13 +3,13 @@
 	"name": "LdoD-MFE",
 	"icons": [
 		{
-			"src": "/ldod-mfes/shell/icon.webp",
+			"src": "/shell/icon.webp",
 			"sizes": "325x325",
 			"type": "image/webp",
 			"purpose": "any"
 		}
 	],
-	"start_url": "/ldod-mfes/",
+	"start_url": "/",
 	"background_color": "#fff",
 	"theme_color": "#fc1b27",
 	"display": "fullscreen"

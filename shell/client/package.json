@@ -8,9 +8,11 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@rollup/plugin-replace": "^5.0.2",
+		"@rollup/plugin-terser": "latest",
 		"rollup": "latest",
 		"rollup-plugin-import-css": "latest",
-		"@rollup/plugin-terser": "latest",
 		"serve": "latest"
-	}
+	},
+	"dependencies": {}
 }

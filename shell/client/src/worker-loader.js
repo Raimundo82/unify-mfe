@@ -1,21 +1,16 @@
 /** @format */
 
-const worker = new Worker('/ldod-mfes/shell/worker.js', { type: 'module' });
-
-const FONTS_URL = '/ldod-mfes/shell/style/fonts';
-const ROOT_CSS_URL = '/ldod-mfes/shared/ui/bootstrap/root.css';
-const BOOTSTRAP_CSS_URL = '/ldod-mfes/shared/ui/bootstrap/bootstrap.css';
-
+const BASE_PATH = globalThis.BASE_PATH ? '/' + globalThis.BASE_PATH : '';
+const worker = new Worker(BASE_PATH + '/shell/worker.js', { type: 'module' });
+const FONTS_URL = BASE_PATH + '/shell/style/fonts';
+const ROOT_CSS_URL = BASE_PATH + '/shared/ui/bootstrap/root.css';
+const BOOTSTRAP_CSS_URL = BASE_PATH + '/shared/ui/bootstrap/bootstrap.css';
 const fonts = [];
 
 fonts.forEach(font => {
 	worker.postMessage({ type: 'font', url: font.src });
 });
 worker.postMessage({ type: 'css', url: BOOTSTRAP_CSS_URL });
-
-//worker.postMessage({ type: 'script', url: '/ldod-mfes/shared/notifications.js' });
-//worker.postMessage({ type: 'script', url: '/ldod-mfes/shared/ldod-icons.js' });
-//worker.postMessage({ type: 'script', url: '/ldod-mfes/references.js' });
 
 const workerHandler = {
 	font: (res, url) => onFont(res, url),

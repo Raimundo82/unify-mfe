@@ -68,16 +68,16 @@ export default class LdodRouter extends HTMLElement {
 
 	async connectedCallback() {
 		this.addEventListeners();
-		this.processRoutes();
+		await this.processRoutes();
 	}
 
-	processRoutes(routes = this.routes) {
+	async processRoutes(routes = this.routes) {
 		this.routes = Object.entries(routes).reduce((prev, [key, api]) => {
 			let path = removeEndSlash(`/${this.base}/${this.route}/${key}`.replace(/\/\/+/g, '/'));
 			prev[path] = api;
 			return prev;
 		}, {});
-		this.navigate();
+		await this.navigate();
 	}
 
 	attributeChangedCallback(name, oldV, newV) {
@@ -104,18 +104,18 @@ export default class LdodRouter extends HTMLElement {
 		window.addEventListener('popstate', this.handlePopstate);
 	}
 
-	navigate = (path = this.location, state = {}) => {
+	navigate = async (path = this.location, state = {}) => {
 		if (this.isPathActive(path)) return;
 		if (this.location !== path) history.pushState(state, undefined, path);
-		this.render();
+		await this.render();
 	};
 
-	handleURLChanged = ({ payload: { path, state } }) => {
-		if (path && this.isFromThisRouter(path)) this.navigate(this.getFullPath(path), state);
+	handleURLChanged = async ({ payload: { path, state } }) => {
+		if (path && this.isFromThisRouter(path)) await this.navigate(this.getFullPath(path), state);
 	};
 
-	handlePopstate = () => {
-		this.isFromThisRouter(this.location) && this.navigate(this.location);
+	handlePopstate = async () => {
+		this.isFromThisRouter(this.location) && (await this.navigate(this.location));
 	};
 
 	async render() {
@@ -185,7 +185,8 @@ export default class LdodRouter extends HTMLElement {
 		this.active && (await this.removeMFE());
 		this.active = await route();
 		const element = await this.active.mount();
-		this.getWrapper().appendChild(element);
+		console.log(element);
+		if (element instanceof HTMLElement) this.getWrapper().appendChild(element);
 	}
 
 	async removeMFE() {

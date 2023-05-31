@@ -17,10 +17,10 @@ async function loadMfe() {
 
 export default {
 	path: `/${import.meta.env.VITE_MFE_NAME}`,
-	mount: async (lang, ref) => (await loadMfe()).mount(lang, ref),
+	mount: async (lang, ref) => (await loadMfe()).mount(),
 	unMount: async () => (await loadMfe()).unMount(),
 	preRender: async (dom, lang) => (await import('./pre-render')).default(dom, lang),
 	references: {
-		hello: () => `/${import.meta.env.VITE_MFE_NAME}`,
+		index: () => `/${import.meta.env.VITE_MFE_NAME}`,
 	},
 };

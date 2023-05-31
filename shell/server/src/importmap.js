@@ -1,17 +1,20 @@
 /** @format */
 
 import fs from 'fs';
-import { importmapPath } from './constants.js';
+import { importmapPath, BASE_PATH } from './constants.js';
 
 export function createOrUpdateImportmap() {
 	const importmap = loadImportmap();
 	if (!('@core' in importmap))
-		addToImportmap({ name: '@core', entry: '/ldod-mfes/shared/core/ldod-core.js' });
+		addToImportmap({ name: '@core', entry: BASE_PATH + '/shared/core/ldod-core.js' });
 	if (!('@core-ui' in importmap))
-		addToImportmap({ name: '@core-ui', entry: '/ldod-mfes/shared/core-ui/ldod-core-ui.js' });
-	if (!('@ui' in importmap)) addToImportmap({ name: '@ui/', entry: '/ldod-mfes/shared/ui/' });
+		addToImportmap({
+			name: '@core-ui',
+			entry: BASE_PATH + '/shared/core-ui/ldod-core-ui.js',
+		});
+	if (!('@ui' in importmap)) addToImportmap({ name: '@ui/', entry: BASE_PATH + '/shared/ui/' });
 	if (!('@vendor/' in importmap))
-		addToImportmap({ name: '@vendor/', entry: '/ldod-mfes/shared/node_modules/' });
+		addToImportmap({ name: '@vendor/', entry: BASE_PATH + '/shared/node_modules/' });
 }
 
 export function loadImportmap() {
@@ -40,5 +43,5 @@ export const removeFromImportmaps = ({ name }) => {
 	saveImportmap(importmap);
 };
 export function getEntryPoint(id) {
-	return loadImportmap().imports[id]?.replace('/ldod-mfes/', '');
+	return loadImportmap().imports[id]?.replace(`${BASE_PATH}/`, '');
 }

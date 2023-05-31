@@ -4,8 +4,8 @@ if (navigator.serviceWorker) register();
 
 async function register() {
 	const reg = await navigator.serviceWorker
-		.register('/ldod-mfes/service-worker.js', {
-			scope: '/ldod-mfes/',
+		.register('/service-worker.js', {
+			scope: '/',
 			updateViaCache: 'none',
 		})
 		.catch(error => console.error(error));

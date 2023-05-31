@@ -5,7 +5,7 @@ import { preRenderIndexHtml } from './pre-render.js';
 import fs from 'fs';
 import { getOriginalHTML } from './static.js';
 import { loadImportmap } from './importmap.js';
-import { indexHTML } from './constants.js';
+import { BASE_PATH, indexHTML } from './constants.js';
 import { parse } from 'node-html-parser';
 import { minify } from 'html-minifier';
 import { updateSWCache } from './update-cache-version.js';
@@ -15,7 +15,7 @@ export async function updateIndexHTML() {
 	if (!html) return;
 	let dom = parse(html);
 	updateImportmapScript(dom);
-	updateLdodProcessScript(dom);
+	updateProcessScript(dom);
 	updateMfesReferencesScript(dom);
 	dom = await preRenderIndexHtml(dom);
 	writeIndexHTML(dom.outerHTML);
@@ -34,16 +34,16 @@ function updateImportmapScript(dom) {
 	importmapScript.set_content(JSON.stringify(loadImportmap()));
 }
 
-function updateLdodProcessScript(dom) {
-	if (!process.env.HOST) return;
+function updateProcessScript(dom) {
 	const mfes = JSON.stringify(loadMfes());
 	const ldodProcessScript = parse(/*html */ `
                 <script id="ldod-process">
-                    window.LDOD_PRODUCTION = true;
-                    window.mfes = ${mfes}
+                    globalThis.PRODUCTION = true;
+                    globalThis.mfes = ${mfes}
                     globalThis.process = {
-                            host: "${process.env.HOST}",
-                            apiHost: "${process.env.API_HOST}"
+                            FE_HOST: "${process.env.FE_HOST}",
+                            BE_HOST: "${process.env.BE_HOST}",
+							BASE_PATH: "${process.env.BASE_PATH}"
                         };
                 </script>`);
 
@@ -53,7 +53,7 @@ function updateLdodProcessScript(dom) {
 }
 
 function updateMfesReferencesScript(dom) {
-	const src = '/ldod-mfes/references.js';
+	const src = BASE_PATH + '/references.js';
 	let script = dom.querySelector('head script#mfes-references');
 	if (script && script.attributes.src === src) return;
 	script = parse(`<script id="mfes-references" src="${src}" async></script>`);

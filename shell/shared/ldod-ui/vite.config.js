@@ -10,7 +10,7 @@ export default defineConfig({
 		emptyOutDir: true,
 		sourcemap: true,
 		lib: {
-			entry: ['index.js', 'nav-dropdown/nav-dropdown-ssr.js', 'buttons/buttons.js'],
+			entry: ['index.js' /*'nav-dropdown/nav-dropdown-ssr.js', 'buttons/buttons.js'*/],
 			formats: ['es'],
 		},
 		rollupOptions: {

@@ -19,6 +19,7 @@ const tempPath = resolve(rootPath, 'temp');
 const templatePath = resolve(rootPath, 'templates');
 const staticSWPath = resolve(staticPath, 'service-worker.js');
 const templateSWPath = resolve(templatePath, 'service-worker.js');
+const BASE_PATH = process.env.BASE_PATH ? `/${process.env.BASE_PATH}` : '';
 
 export {
 	staticPath,
@@ -35,4 +36,5 @@ export {
 	indexHTML,
 	staticSWPath,
 	templateSWPath,
+	BASE_PATH,
 };

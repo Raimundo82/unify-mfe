@@ -4,6 +4,7 @@
 
 import terser from '@rollup/plugin-terser';
 import css from 'rollup-plugin-import-css';
+import replace from '@rollup/plugin-replace';
 import { resolve } from 'path';
 
 export default {
@@ -24,5 +25,10 @@ export default {
 			chunkFileNames: '[name].js',
 		},
 	],
-	plugins: [css()],
+	plugins: [
+		css(),
+		replace({
+			preventAssignment: false,
+		}),
+	],
 };

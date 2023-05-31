@@ -1,5 +1,6 @@
 /** @format */
 
+import { eventBus } from '../../unify-event-bus';
 import { BASE_PATH } from './ldod-router';
 export default class NavTo extends HTMLAnchorElement {
 	get to() {
@@ -74,5 +75,5 @@ export default class NavTo extends HTMLAnchorElement {
 customElements.define('nav-to', NavTo, { extends: 'a' });
 
 export const navigateTo = (path, state) => {
-	unifyEventBus.publishr('unify:url', { path, state });
+	eventBus.publish('unify:url', { path, state });
 };

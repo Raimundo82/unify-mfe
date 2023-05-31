@@ -24,6 +24,12 @@ export function getMfeName() {
 	}
 }
 
+export function getPort() {
+	const args = process.argv.slice(2);
+	const index = args.indexOf('-port');
+	return index === '-1' ? 9001 : args[index + 1];
+}
+
 export function undo(name) {
 	fs.rmSync(resolve(process.cwd(), name), {
 		recursive: true,

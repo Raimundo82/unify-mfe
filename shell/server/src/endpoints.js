@@ -9,9 +9,9 @@ import {
 } from './static.js';
 import { addToImportmap, removeFromImportmaps } from './importmap.js';
 import { addMfe, removeMfe } from './mfes.js';
-import { gamePath, tempPath, visualPath } from './constants.js';
+import { gamePath, tempPath, visualPath, BASE_PATH } from './constants.js';
 import { isMainThread, Worker } from 'worker_threads';
-import { generateMfesReferences } from './mfesReferences.js';
+import { generateMfesReferences } from './mfes-references.js';
 import { emitter } from './event-bus.js';
 import { updateIndexHTML } from './html-template.js';
 import { resolve } from 'path';
@@ -57,7 +57,7 @@ const publishMFE = async (req, res) => {
 	if (name)
 		await addToImportmap({
 			name,
-			entry: name !== entry ? `/${process.env.BASE}/${entryPoint}` : `/${entry}`,
+			entry: name !== entry ? BASE_PATH + `/${entryPoint}` : `/${entry}`,
 		});
 
 	await addMfe(id);

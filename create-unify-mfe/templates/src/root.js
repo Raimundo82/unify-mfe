@@ -2,13 +2,14 @@
 
 import helloWorld from './page/hello-world';
 
-let container;
+let element;
 
-function mount(lang, ref) {
-	container = document.querySelector(ref).appendChild(helloWorld(lang));
+function mount() {
+	element = helloWorld();
+	return element;
 }
 function unMount() {
-	container?.remove();
+	element?.remove();
 }
 
 export { mount, unMount };

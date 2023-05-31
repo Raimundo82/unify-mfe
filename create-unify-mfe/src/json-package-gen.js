@@ -13,7 +13,7 @@ export default name => {
 	}
 };
 
-function getPackageJSON(name) {
+function getPackageJSON(name, port = 9001) {
 	return {
 		name,
 		version: '1.0.0',
@@ -22,8 +22,7 @@ function getPackageJSON(name) {
 		type: 'module',
 		entry: 'index.js',
 		config: {
-			docker: 'http://localhost:8080/ldod-mfes',
-			dev: 'http://localhost:9000/ldod-mfes',
+			dev: `http://localhost:${port}`,
 		},
 		scripts: {
 			dev: 'vite',
