@@ -14,7 +14,7 @@ npm install -g ./create-unify-mfe
 ```
 
 ```sh
-npx create-unify-mfe -name <some-name> -port <some-port>
+npx create-unify-mfe -name 'some-name' -port 'some-port'
 ```
 
 ```sh
@@ -24,4 +24,4 @@ yarn dev // dev server
 yarn publish-dev // publish on the server
 ```
 
-Go to http://localhost:`<some-port>/<some-name>`
+Go to http://localhost:'some-port'/'some-name'
