@@ -14,7 +14,7 @@ npm install -g ./create-unify-mfe
 ```
 
 ```sh
-npx create-unify-mfe -name 'some-name' -port 'some-port'
+npx create-unify-mfe --name 'some-name' --fe-host-port 'some-port'
 ```
 
 ```sh

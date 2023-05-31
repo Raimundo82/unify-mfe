@@ -13,8 +13,9 @@ export function checkNodeVersion() {
 
 export function getMfeName() {
 	const args = process.argv.slice(2);
-	const index = args.indexOf('-name');
-	if (index === '-1') onError('Invalid directory name. It should be passed the "-name" argument');
+	const index = args.indexOf('--name');
+	if (index === '-1')
+		onError('Invalid directory name. It should be passed the "--name" argument');
 	const name = args[index + 1];
 	try {
 		fs.statSync(`${process.cwd()}/${name}`);
@@ -26,7 +27,7 @@ export function getMfeName() {
 
 export function getPort() {
 	const args = process.argv.slice(2);
-	const index = args.indexOf('-port');
+	const index = args.indexOf('--fe-host-port');
 	return index === '-1' ? 9001 : args[index + 1];
 }
 
